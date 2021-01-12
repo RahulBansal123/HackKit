@@ -9,13 +9,14 @@ def addr():
     return network
 
 address=str(input('[+] Custom Mac Address: '))
-x = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", address)
+x = re.search(r"^([0-9A-Fa-f]{2}[:-])" +"{5}([0-9A-Fa-f]{2})|" +"([0-9a-fA-F]{4}\\." +"[0-9a-fA-F]{4}\\." +"[0-9a-fA-F]{4})$", address)
 if x: 
     if platform.system()=='Darwin':
         network = addr()
         print('[+] Changing MAC Address...')
         try:
             subprocess.call('sudo ifconfig '+network+' ether '+x.group(),shell=True)
+            print('[+] Changed Successfully')
         except :
             print("[-] Please Try Again")
     elif platform.system()=='Linux':
@@ -25,6 +26,7 @@ if x:
             subprocess.call('ifconfig '+network+' down',shell=True)
             subprocess.call('ifconfig '+network+' hw ether '+x.group(),shell=True)
             subprocess.call('ifconfig '+network+' up',shell=True)
+            print('[+] Changed Successfully')
         except :
             print("[-] Please Try Again")
     elif platform.system()=='Windows':
@@ -33,6 +35,7 @@ if x:
         print('[+] Changing MAC Address...')
         try:
             subprocess.call("reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\ControlClass\{4D36E972-E325-11CE-BFC1-08002BE10318}_0002 /v NetworkAddress /d "+x.group().replace(':','')+" /f",shell=True)
+            print('[+] Changed Successfully')
         except :
             print("[-] Please Try Again")
     else:

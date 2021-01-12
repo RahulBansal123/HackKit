@@ -12,7 +12,7 @@
 
 <h2>update</h2>
 <ul>
-<li>python update.py</li>
+<li>python3 update.py</li>
 </ul>
     
 
