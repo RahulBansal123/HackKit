@@ -8,6 +8,7 @@
 <li>Network Scanner</li>
 <li>ARP spoofer</li>
 <li>Keylogger</li>
+<li>Malware</li>
 </ul>
 
 <h2>update</h2>
